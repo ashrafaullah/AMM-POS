@@ -1,0 +1,87 @@
+<br/>
+
+<!--
+<div class="text-center">
+	<span class="">Vendas de hoje</span>
+	<br/>
+	<span class="text-success checkout-total-price">
+		$ <span odometer="todayTotal"></span>
+	</span>
+</div>
+
+<br/><br/>
+-->
+
+<table ng-if="transactions" class="table table-hover table-striped">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Hour</th>
+			<th>Total</th>
+			<th>Amount received</th>
+			<th>Client name</th>
+			<th>Pay</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="transaction in transactions track by $index | orderBy: getTransactionDate(transaction):reverse">
+			<td ng-if="transaction.status === 0" style="background-color:rgba(255, 99, 71, 0.5)"> {{ transaction._id }} </td>
+			<td ng-if="transaction.status === 1" style="background-color:rgba(60, 179, 113, 0.5)"> {{ transaction._id }} </td>
+			<td ng-if="transaction.status === 2" style="background-color:rgba(79, 195, 247, 0.5)"> {{ transaction._id }} </td>
+
+			<td ng-if="transaction.status === 0" style="background-color:rgba(255, 99, 71, 0.5)"> {{ transaction.date | date:'short' }} </td>
+			<td ng-if="transaction.status === 1" style="background-color:rgba(60, 179, 113, 0.5)"> {{ transaction.date | date:'short' }} </td>
+			<td ng-if="transaction.status === 2" style="background-color:rgba(79, 195, 247, 0.5)"> {{ transaction.date | date:'short' }} </td>
+
+			<td ng-if="transaction.status === 0" style="background-color:rgba(255, 99, 71, 0.5)">  {{ transaction.total | currency }}  </td>
+			<td ng-if="transaction.status === 1" style="background-color:rgba(60, 179, 113, 0.5)">  {{ transaction.total | currency }}  </td>
+			<td ng-if="transaction.status === 2" style="background-color:rgba(79, 195, 247, 0.5)">  {{ transaction.total | currency }}  </td>
+
+			<td ng-if="transaction.status === 0" style="background-color:rgba(255, 99, 71, 0.5)">  {{ transaction.payment | currency }}  </td>
+			<td ng-if="transaction.status === 1" style="background-color:rgba(60, 179, 113, 0.5)">  {{ transaction.payment | currency }}  </td>
+			<td ng-if="transaction.status === 2" style="background-color:rgba(79, 195, 247, 0.5)">  {{ transaction.payment | currency }}  </td>
+
+			<td ng-if="transaction.status === 0" style="background-color:rgba(255, 99, 71, 0.5)">  {{ transaction.customerName }}  </td>
+			<td ng-if="transaction.status === 1" style="background-color:rgba(60, 179, 113, 0.5)">  {{ transaction.customerName }}  </td>
+			<td ng-if="transaction.status === 2" style="background-color:rgba(79, 195, 247, 0.5)">  {{ transaction.customerName }}  </td>
+
+			<td ng-if="transaction.status === 0" style="background-color:rgba(255, 99, 71, 0.5)">
+				<a class="btn btn-info" href="#/transaction/{{ transaction._id }}">
+					<i class="glyphicon glyphicon-usd"></i>
+				</a>
+			</td>
+			<td ng-if="transaction.status === 1" style="background-color:rgba(60, 179, 113, 0.5)">
+				<a class="btn btn-info" href="#/transaction/{{ transaction._id }}">
+					<i class="glyphicon glyphicon-usd"></i>
+				</a>
+			</td>
+			<td ng-if="transaction.status === 2" style="background-color:rgba(79, 195, 247, 0.5)">
+				<a class="btn btn-info" href="#/transaction/{{ transaction._id }}">
+					<i class="glyphicon glyphicon-usd"></i>
+				</a>
+			</td>
+
+			<td ng-if="transaction.status === 0" style="background-color:rgba(255, 99, 71, 0.5)">
+				<a class="btn btn-info" href="#/edit/{{ transaction._id }}">
+					<i class="glyphicon glyphicon-edit"></i>
+				</a>
+			</td>
+			<td ng-if="transaction.status === 1" style="background-color:rgba(60, 179, 113, 0.5)">
+				<a class="btn btn-info" href="#/edit/{{ transaction._id }}">
+					<i class="glyphicon glyphicon-edit"></i>
+				</a>
+			</td>
+			<td ng-if="transaction.status === 2" style="background-color:rgba(79, 195, 247, 0.5)">
+				<a class="btn btn-info" href="#/edit/{{ transaction._id }}">
+					<i class="glyphicon glyphicon-edit"></i>
+				</a>
+			</td>
+
+		</tr>
+
+		<tr ng-if="!transactions.length">
+			<td colspan="5">No transactions found.</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,102 @@
+<script>
+function printDiv() {
+    var divToPrint = document.getElementById('print-section');
+    var htmlToPrint = '' +
+        '<style type="text/css">' +
+        '@page {size:A4; margin: 0;}' +
+        'table { align:center; background: white; color: black; border:solid black 1px; max-width: 2480px; width:90%;}'+
+        'th,td { width:auto; overflow: hidden; word-wrap: break-word; padding: 4px 4px 4px 4px ; text-align: center ;}' +
+        'th { border-bottom: 2px solid #333333 ;}' +
+        'td { border-bottom: 1px dotted #999999 ; overflow:hidden;}' +
+        'tfoot { border-bottom-width: 0px ; border-top: 2px solid #333333 ;padding-top: 20px ;}' +
+        'a {color: black; text-decoration: none;}' +
+        '.custom-title { font-family: verdana, arial, sans-serif ;font-size: 20px ;text-align: center ;height: 40px;padding-top: 20px ;}'+
+        '.panel-heading { font-family: verdana, arial, sans-serif ;font-size: 15px ;text-align: center ;height: 30px;}' +
+        '</style>';
+    htmlToPrint += divToPrint.outerHTML;
+    newWin = window.open("");
+    newWin.document.write(htmlToPrint);
+    newWin.print();
+    newWin.close();
+}
+</script>
+
+<div>
+
+
+  <div class="text-center">
+    <button onclick="printDiv()" class="btn btn-primary">To print</button>
+  </div>
+
+  <br>
+
+
+  <div id="client-section" class="panel panel-primary">
+
+
+    <table class="receipt table table-hover">
+        <thead>
+          <tr class="small">
+            <th> Reference </th>
+            <th> Client </th>
+            <th> Order status </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> {{ transaction._id }} </td>
+            <td> {{ transaction.customerName }} </td>
+            <td ng-if="transaction.status === 0">  Awaiting payment  </td>
+            <td ng-if="transaction.status === 1">  Payment  </td>
+            <td ng-if="transaction.status === 2">  Inbox </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  <div id="print-section" align="center" class="panel panel-primary">
+  <div class="custom-title no-display">Packaging gallery</div>
+  <div class="panel-heading text-center lead">Current Order</div>
+    <table class="receipt table table-hover">
+        <thead>
+          <tr class="small">
+            <th> Product </th>
+            <th> Amount </th>
+            <th> Unit price </th>
+            <th> Price </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="product in transaction.products">
+            <td>
+              <a href="#/inventory/product/{{ product._id }}">
+                {{ product.name }}
+              </a>
+            </td>
+            <td> {{ product.quantity }} </td>
+            <td>
+              <span>
+                {{ product.price | currency }}
+              </span>
+            </td>
+            <td>
+              <span>
+                {{ ( product.price * product.quantity ) | currency }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+
+        <tbody>
+          <tr class="total">
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td> {{ transaction.total | currency }} </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="no-display" align="center">Not a tax document</p>
+  </div>
+</div>

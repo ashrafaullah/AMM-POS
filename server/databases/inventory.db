@@ -1,0 +1,16 @@
+{"name":"Beef","price":8.99,"quantity_on_hand":10,"_id":"OQRBlOmVgYAPbAll"}
+{"barcode":"1234","name":"Chicken","price":5.99,"quantity_on_hand":7,"_id":"cpop8ZeZZtBRWzuL"}
+{"barcode":"135679","name":"Chicken Thigh","price":4.99,"quantity_on_hand":10,"_id":"d7wwzY9vp5VHCkgd"}
+{"barcode":"14579","name":"Chicken Salad","price":2.99,"quantity_on_hand":5,"_id":"h1gw7zO5hvycM8R3"}
+{"barcode":"1368","name":"Lamb","price":4.99,"quantity_on_hand":7,"_id":"mOEWhLiHw64XmiS4"}
+{"barcode":"1357","name":"Chicken Wings","price":8.99,"quantity_on_hand":9,"_id":"nwWYYn0VxXSXrAnT"}
+{"barcode":"19862","name":"Beef Soup","price":6.99,"quantity_on_hand":9,"_id":"q9wL8ljA53i5SEyH"}
+{"barcode":"13578","name":"Chicken Leg","price":6.99,"quantity_on_hand":10,"_id":"sOo5LfoSSijdsj6j"}
+{"barcode":"14579","name":"Chicken Salad","price":2.99,"quantity_on_hand":4,"_id":"h1gw7zO5hvycM8R3"}
+{"barcode":"19862","name":"Beef Soup","price":6.99,"quantity_on_hand":8,"_id":"q9wL8ljA53i5SEyH"}
+{"barcode":"1357","name":"Lamb Chops","price":3.99,"quantity_on_hand":5,"_id":"KIpf907FAguFJClA"}
+{"barcode":"1357","name":"Lamb Chops","price":3.99,"quantity_on_hand":4,"_id":"KIpf907FAguFJClA"}
+{"barcode":"1234","name":"Chicken","price":5.99,"quantity_on_hand":6,"_id":"cpop8ZeZZtBRWzuL"}
+{"$$deleted":true,"_id":"OQRBlOmVgYAPbAll"}
+{"barcode":"14579","name":"Chicken Salad","price":2.99,"quantity_on_hand":3,"_id":"h1gw7zO5hvycM8R3"}
+{"barcode":"13578","name":"Chicken Leg","price":6.99,"quantity_on_hand":9,"_id":"sOo5LfoSSijdsj6j"}

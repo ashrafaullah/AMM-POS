@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<div class="text-center">
+	<span class="lead">Total</span>
+	<br/>
+	<span class="text-success checkout-total-price">
+		$<span odometer="cart.total"></span>
+	</span>
+
+	<order
+		cart-total="cart.total"
+		order="order()"
+		transaction-id = "transactionId"
+		finish-order="finishOrder(info)">
+	</order>
+
+</div>
+
+
+<table style="width:100%" class="pos table table-responsive table-striped table-hover">
+	<thead>
+
+		<tr>
+			<td colspan="6" class="text-center">
+				<add-manual-item class="pull-left" add-item="addManualItem(item)"></add-manual-item>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="6" class="text-center">
+				  <input autofocus list="product-list" id="product-entry" type="text" class="form-control" name="product-reference" required/>
+					<datalist id="product-list">
+  					<option ng-repeat="item in inventory" value="{{ item.name }}"></option>
+					</datalist>
+	    </td>
+    </tr>
+
+		<tr class="titles">
+			<th>Name</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Total</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="product in cart.products | orderBy : '-cart_item_id' track by $index">
+			<td class="col-md-2"> {{ product.name }} </td>
+			<td class="col-md-1"> {{ product.price | currency }} </td>
+			<td class="col-md-2">
+
+				<button class="btn btn-sm pull-left" ng-click="removeQuantity(product)" type="button" prevent-enter-fireing>
+					<i class="glyphicon glyphicon-minus"></i>
+				</button>
+
+				<div class="col-md-6">
+					<input
+						type="number"
+						class=""
+						step="any"
+						min="0"
+						ng-model="product.quantity"
+						ng-change="updateCartTotals()"
+						required/>
+				</div>
+
+				<button class="btn btn-sm pull-right" ng-click="addQuantity(product)" type="button" prevent-enter-fireing>
+					<i class="glyphicon glyphicon-plus"></i>
+				</button>
+
+			</td>
+			<td class="col-md-2">
+				{{ ( product.price * product.quantity) | currency }}
+			</td>
+			<td class="col-md-2">
+				<button class="btn btn-danger" ng-click="removeProductFromCart(product.cart_item_id)">
+					<i class="glyphicon glyphicon-trash"></i>
+				</button>
+			</td>
+		</tr>
+		<tr ng-if="!cart.products.length">
+			<td colspan="6">No products added</td>
+		</tr>
+	</tbody>
+</table>

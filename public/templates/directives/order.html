@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<button
+  class="btn btn-success lead"
+  id="orderButton"
+  ng-click="openOrder()"
+  ng-disabled="cartTotal === 0"
+  data-toggle="modal"
+  data-target="#orderModal">
+    <i class="glyphicon glyphicon-shopping-cart"></i>
+    <br/>
+    F<br/>
+    i<br/>
+    n<br/>
+    a<br/>
+    l<br/>
+    i<br/>
+    z<br/>
+    e<br/>
+</button>
+
+<style>
+  #orderCustomerName {
+    font-size: 23px;
+    font-weight: bold;
+  }
+  #orderModal .form-group {
+    float: none;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    max-width: 50%;
+  }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="myOrderLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myOrderLabel">Finalize</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="lead">
+          <h3>Total: <span class="text-danger">{{ cartTotal | currency }}</span></h3>
+          <h3>Order Number: <span class="text-success"> {{ transactionId.id }} </span></h3>
+
+          <form class="form-horizontal" name="nameForm" ng-submit="addCustomerName()">
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">Client name</div>
+                <input type="text"
+                  id="orderCustomerName"
+                  class="form-control input-lg"
+                  ng-model="customerName"
+                  >
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg lead">
+              Close
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
